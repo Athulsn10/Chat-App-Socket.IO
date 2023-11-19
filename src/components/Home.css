@@ -1,0 +1,20 @@
+.c1{
+    background-color:#221d1d;
+}
+.c2 {
+    background-color: #201a21;
+}
+.c3 {
+    background-color: #19001d;
+}
+@media (max-width: 767px) {
+    .desk{
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .para{
+        margin-right: 30px;
+    }
+}
+
