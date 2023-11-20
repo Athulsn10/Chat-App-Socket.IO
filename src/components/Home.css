@@ -11,10 +11,15 @@
     .desk{
         display: none;
     }
-}
-@media (max-width: 767px) {
     .para{
-        margin-right: 30px;
+        padding-right:25px;
+        font-size: 23px;
+    }
+}
+@media (min-width: 768px) {
+    .para{
+        font-size: 30px;
+
     }
 }
 
