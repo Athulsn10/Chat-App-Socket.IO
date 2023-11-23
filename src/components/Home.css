@@ -1,25 +1,31 @@
 .c1{
-    background-color:#221d1d;
+    background-color:rgb(0 0 46);
+    color: #d292ff;
 }
 .c2 {
-    background-color: #201a21;
+    background-color: rgb(0, 0, 0);
+    /* background-image: url('/public/images/bg.jpg'); */
+
 }
 .c3 {
-    background-color: #19001d;
+    background-color: #ffffff;
+    
 }
+/* phone */
 @media (max-width: 767px) {
-    .desk{
+    .c1{
         display: none;
     }
-    .para{
-        padding-right:25px;
-        font-size: 23px;
-    }
+    
 }
-@media (min-width: 768px) {
+/* desktop */
+/* @media (min-width: 768px) {
     .para{
         font-size: 30px;
 
     }
-}
+    .type-writter{
+        height: 100%;
+    }
+} */
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Header from "./Header";
 import "./Home.css";
-import Footer from './Footer'
+import Auth from "./Auth";
 
 function Home() {
   const [text] = useTypewriter({
@@ -20,17 +20,15 @@ function Home() {
 
   return (
     <>
-      <div className="" style={{ height: "100vh" }}>
-        <div className="row" style={{ height: "100%" }}>
-          <div className="col-lg-7 col-sm-12 p-0 fs-3 h-100 c1">
-            <Header />
-            <div className="ms-4 d-flex align-items-center h-100">
+      <div className="">
+        <Header />
+        <div className="row d-flex" style={{ height: 'fit-content' }}>
+          <div className="col-12 col-md-6 p-0 fs-3  c1 " style={{ height: '100vh' }}>
+            <div className="ms-5 d-flex align-items-center mt-5 pt-5">
               <p
-                style={{
-                  backgroundColor: "transparent",
-                  color: "white",
-                }}
-                className="fs-2 fw-bolder text-light"
+                className="fs-2 fw-bolder"
+                style={{marginTop:'15%',color:'#d292ff'}}
+
               >
                 <span>{text}</span>
                 <span>
@@ -39,14 +37,16 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className="desk col-lg-5 col-sm-12 h-100 c2 p-0"></div>
+          <div className="col-12 col-md-6 c2 p-0 " >
+              <Auth/>
+          </div>
+          
         </div>
       </div>
-      <div className="mob" style={{ height: "100vh" }}>
-        <div className="row c3" style={{ height: "100%" }}>
-          <div className="col-lg-7 col-sm-12 mt-5 col-sm-12 ps-3 ms-4 p-0">
-            <Header />
-            <p className="text-light  para   mt-5">
+      {/* <div className="mob">
+        <div className="c3" >
+          <div className=" my-0 ms-3 p-0">
+            <p className=" para">
               Welcome to Chatify, the ultimate socializing platform where
               connections happen in real-time! Whether you're looking to meet
               new friends or catch up with old ones, Chatify is the place to be.
@@ -56,8 +56,8 @@ function Home() {
             <button className="btn btn-primary py-2 px-5">Get Started</button>
           </div>
         </div>
-      </div>
-      <Footer/>
+      </div> */}
+      
     </>
   );
 }

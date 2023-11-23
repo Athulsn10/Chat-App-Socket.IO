@@ -5,9 +5,9 @@ import Navbar from 'react-bootstrap/Navbar';
 function Header() {
   return (
     <>
-      <Navbar fixed='top' className="navbar navbar-expand-lg navbar-dark bg-transparent ">
+      <Navbar fixed='top' className="navbar navbar-expand-lg  bg-transparent ">
         <Container className='ms-4 ps-0'>
-          <Navbar.Brand className='fw-bolder text-light fs-2 ' style={{ color: '#000000' }}>Chatify</Navbar.Brand>
+          <Navbar.Brand className='fw-bolder fs-2' style={{color:'#d292ff'}}>Chatify</Navbar.Brand>
         </Container>
       </Navbar>
     </>
