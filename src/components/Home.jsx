@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Header from "./Header";
 import "./Home.css";
 import Auth from "./Auth";
+import { useNavigate } from "react-router";
 
 function Home() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user){
+     navigate("/chats");
+    }
+  }, [history]);
   const [text] = useTypewriter({
     words: [
       "Connecting with strangers..",

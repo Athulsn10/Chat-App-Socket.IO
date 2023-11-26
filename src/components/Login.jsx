@@ -4,21 +4,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0)
   const navigate = useNavigate();
 
 
   const submitHandler = async() =>{
-    setLoading(true);
+    setProgress(40)
     if(!email || !password){
       toast.warn("Fill all fields")
-      setLoading(false)
     }
     try {
+      setProgress(80)
       const config = {
         headers: {
           "content-type": "application/json",
@@ -30,14 +31,22 @@ function Login() {
         config
       );
       localStorage.setItem("userInfo", JSON.stringify(data));
-      setLoading(false);
+      setProgress(100)
       navigate("/chats");
     } catch (error) {
+      setProgress(0)
+      console.log(progress);
       console.log(error);
+      toast.error('invalid credentials')
     }
   };
   return (
     <>
+     <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
     <div className="my-2">
         <div className=" d-flex align-items-center justify-content-center">
           <div className='container-fluid'>
@@ -61,7 +70,7 @@ function Login() {
         </div>
         <div className="mb-2 d-flex align-items-center justify-content-center">
           <button onClick={submitHandler} 
-          disabled={loading}
+          // disabled={loading}
           style={{backgroundColor:'#3c46ff',color:'white'}} className="mx-2 btn  w-100">Log In</button>
         </div>
         <div className="mb-2 d-flex align-items-center justify-content-center">

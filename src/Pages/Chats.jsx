@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import ChatBox from "../components/chatarea/ChatBox";
+import MyChats from "../components/chatarea/MyChats";
+import SearchBox from "../components/chatarea/SearchBox";
+import { ChatState } from "../context/ChatProvider";
+import { useNavigate } from 'react-router-dom';
+
 
 function Chats() {
-    const [chats, setChats] = useState([]);
-    const fetchChats = async()=>{
-        const {data} = await axios.get("/api/chat");
-        // console.log(data);
-        setChats(data);
-    }
-    useEffect(()=>{
-        fetchChats();
-    })
+  const {user} = ChatState();
+  const navigate = useNavigate();
+
+  const logout = ()=>{
+    localStorage.removeItem("userInfo");
+    navigate("/");
+
+  }
   return (
-    <div>Chats</div>
+    <>
+    {user && <SearchBox/>}
+    <div> {user && <MyChats/>} </div>
+    <div> {user && <ChatBox/>} </div>
+    <button onClick={logout}>logout</button>
+    </>
   )
 }
 

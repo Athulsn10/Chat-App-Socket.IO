@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 
 function Signup() {
    const [name, setName] = useState();
@@ -11,12 +12,12 @@ function Signup() {
    const [password, setPassword] = useState();
    const [confirmpassword, setConfirmpassword] = useState();
    const [pic, setPic] = useState();
-   const [loading, setLoading] = useState(true);
    const navigate = useNavigate();
+   const [progress, setProgress] = useState(0)
+
 
    const postDetails = (pics) => {
-     setLoading(true);
-
+     setProgress(20)
      if (pics === undefined) {
        toast.error("select your profile photo");
        return;
@@ -38,23 +39,22 @@ function Signup() {
          .then((data) => {
            setPic(data.url.toString());
            // console.log(data.url.toString());
-           setLoading(false);
+           setProgress(90)
+
          })
          .catch((err) => {
            console.log(err);
-           setLoading(false);
+           setProgress(0)
+
          });
      } else {
        toast.error("select valid image");
-       setLoading(false);
      }
    };
 
    const submitHandler = async () => {
-     setLoading(true);
      if (!name || !email || !password || !confirmpassword) {
        toast.warn("Fill all fields");
-       setLoading(false);
        return;
      }
      if (password !== confirmpassword) {
@@ -73,14 +73,21 @@ function Signup() {
          config
        );
        localStorage.setItem("userInfo", JSON.stringify(data));
-       setLoading(false);
+       setProgress(100)
        navigate("/chats");
      } catch (error) {
        console.log(error);
+       setProgress(0)
+       toast.error("User already exists")
      }
    };
   return (
     <>
+    <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <div className="my-4">
         <div className=" d-flex align-items-center justify-content-center">
           <div className="container-fluid">
@@ -128,7 +135,7 @@ function Signup() {
             onClick={submitHandler}
             style={{ backgroundColor: "#3c46ff", color: "white" }}
             className="mx-2 btn  w-100"
-            loading={loading}
+            // loading={loading}
           >
             Sign Up
           </button>
