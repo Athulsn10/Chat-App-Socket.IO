@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
+import {MY_URL} from '../context/url'
 
 function Signup() {
    const [name, setName] = useState();
@@ -17,6 +18,7 @@ function Signup() {
 
 
    const postDetails = (pics) => {
+    console.log(`${MY_URL}`);
      setProgress(20)
      if (pics === undefined) {
        toast.error("select your profile photo");
@@ -42,10 +44,17 @@ function Signup() {
            setProgress(90)
 
          })
+      
+      // axios.post(`${MY_URL}/upload`,data)
+      // .then(response => {
+      //   // Handle the successful response here
+      //   console.log("Response:", response.data);
+      //   setPic(response.data.url.toString());
+      //   setProgress(90);
+      // })
          .catch((err) => {
            console.log(err);
            setProgress(0)
-
          });
      } else {
        toast.error("select valid image");

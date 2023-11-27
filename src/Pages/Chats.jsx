@@ -2,26 +2,21 @@ import ChatBox from "../components/chatarea/ChatBox";
 import MyChats from "../components/chatarea/MyChats";
 import SearchBox from "../components/chatarea/SearchBox";
 import { ChatState } from "../context/ChatProvider";
-import { useNavigate } from 'react-router-dom';
-
 
 function Chats() {
-  const {user} = ChatState();
-  const navigate = useNavigate();
+  const { user } = ChatState();
 
-  const logout = ()=>{
-    localStorage.removeItem("userInfo");
-    navigate("/");
-
-  }
+  
   return (
     <>
-    {user && <SearchBox/>}
-    <div> {user && <MyChats/>} </div>
-    <div> {user && <ChatBox/>} </div>
-    <button onClick={logout}>logout</button>
+      <div className="row chat-bg">
+        <div className="col-4">
+          <div className="">{user && <SearchBox />}</div> <div> {user && <MyChats />} </div>
+        </div>
+        <div className="col-8"> {user && <ChatBox />} </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Chats
+export default Chats;

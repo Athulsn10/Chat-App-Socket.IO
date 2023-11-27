@@ -16,8 +16,8 @@ function Auth() {
         className="container-fluid d-flex align-items-center justify-content-center"
         style={{ minHeight: '100vh' }}
       >
-       <div>
-            <div className="rounded mt-5 mb-5" style={{ backgroundColor: 'transparent', width:'400px' }}>
+       <div >
+            <div className="rounded mt-5 mb-5 w-100" style={{ backgroundColor: 'transparent', width:'400px' }}>
               <div className='mt-4 d-flex align-items-center justify-content-center ' style={{ backgroundColor: 'transparent' }}>
                 <button 
                 style={{border:'none',backgroundColor: value === 0 ? '#3c46ff' : 'transparent',color:'white'}}

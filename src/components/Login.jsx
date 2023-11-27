@@ -3,8 +3,10 @@ import Form from 'react-bootstrap/Form'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
+
+
 
 function Login() {
   const [email, setEmail] = useState();
@@ -58,6 +60,7 @@ function Login() {
               type="email"
               onChange={(e) => setEmail(e.target.value)}
             />
+      
             <Form.Control
             style={{backgroundColor:'white',border:'none',color:'black'}}
             className='my-3 w-100'
