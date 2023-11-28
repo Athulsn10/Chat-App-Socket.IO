@@ -2,30 +2,42 @@
     background-color:rgb(0 0 46);
     color: #d292ff;
 }
-.c2 {
-    background-color: rgb(0, 0, 0);
-    /* background-image: url('/public/images/bg.jpg'); */
+.developed{
+    background-color:rgb(0 0 46);
+    color: #d292ff;
+    overflow-x: hidden;
+  }
+      
+      .developed-icon {
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .developed-icon:hover {
+        transform: scale(1.2);
+      }
+      
 
-}
-.c3 {
-    background-color: #ffffff;
-    
-}
+
 /* phone */
 @media (max-width: 767px) {
-    .c1{
-        display: none;
+    .sub-content{
+        max-width: 70%;
     }
-    
+    .developed-img{
+        width: 30px;
+        opacity: 0.4;
+    }
 }
+
 /* desktop */
-/* @media (min-width: 768px) {
-    .para{
-        font-size: 30px;
+@media (min-width: 768px) {
+    .sub-content{
+        max-width: 50%;
+    }
+    .developed-img{
+        width: 40px;
+        opacity: 0.4;
 
     }
-    .type-writter{
-        height: 100%;
-    }
-} */
+}
 

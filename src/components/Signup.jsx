@@ -19,7 +19,7 @@ function Signup() {
 
    const postDetails = (pics) => {
     console.log(`${MY_URL}`);
-     setProgress(20)
+     setProgress(40)
      if (pics === undefined) {
        toast.error("select your profile photo");
        return;
@@ -41,8 +41,6 @@ function Signup() {
          .then((data) => {
            setPic(data.url.toString());
            // console.log(data.url.toString());
-           setProgress(90)
-
          })
       
       // axios.post(`${MY_URL}/upload`,data)
@@ -71,6 +69,7 @@ function Signup() {
        return;
      }
      try {
+      
        const config = {
          headers: {
            "content-type": "application/json",
@@ -82,11 +81,11 @@ function Signup() {
          config
        );
        localStorage.setItem("userInfo", JSON.stringify(data));
-       setProgress(100)
+       setProgress(90)
        navigate("/chats");
      } catch (error) {
        console.log(error);
-       setProgress(0)
+       setProgress('')
        toast.error("User already exists")
      }
    };
@@ -97,9 +96,11 @@ function Signup() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-      <div className="my-4">
-        <div className=" d-flex align-items-center justify-content-center">
+      <div className="d-flex justify-content-center" style={{height:'100vh',backgroundColor:'rgb(0 0 46)'}}>
+        <div className=" d-flex align-items-center justify-content-center " style={{width:'340px'}}>
           <div className="container-fluid">
+          <h4 className='text-light text-center'>Sign Up</h4>
+
             <Form.Control
               className="my-3"
               placeholder="Username"
@@ -137,18 +138,20 @@ function Signup() {
             >
               Upload Your Profile Picture
             </p>
-          </div>
-        </div>
-        <div className="mb-2 d-flex align-items-center justify-content-center">
+            <div className="mb-2 d-flex align-items-center justify-content-center">
           <button
             onClick={submitHandler}
             style={{ backgroundColor: "#3c46ff", color: "white" }}
-            className="mx-2 btn  w-100"
+            className=" btn  w-100"
             // loading={loading}
           >
             Sign Up
           </button>
         </div>
+          </div>
+          
+        </div>
+        
       </div>
       <ToastContainer
         position="top-right"

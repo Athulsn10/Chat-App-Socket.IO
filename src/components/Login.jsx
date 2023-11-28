@@ -49,9 +49,10 @@ function Login() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-    <div className="my-2">
-        <div className=" d-flex align-items-center justify-content-center">
+    <div className=" d-flex justify-content-center" style={{height:'100vh',backgroundColor:'rgb(0 0 46)'}}>
+        <div className=" d-flex align-items-center justify-content-center" style={{width:'340px'}}>
           <div className='container-fluid'>
+          <h4 className='text-light text-center'>Welcome back</h4>
             <Form.Control
             style={{backgroundColor:'white',border:'none', color:'black'}}
             className='my-3 w-100'
@@ -69,12 +70,10 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
-        </div>
-        <div className="mb-2 d-flex align-items-center justify-content-center">
+          <div className="mb-2 d-flex align-items-center justify-content-center">
           <button onClick={submitHandler} 
           // disabled={loading}
-          style={{backgroundColor:'#3c46ff',color:'white'}} className="mx-2 btn  w-100">Log In</button>
+          style={{backgroundColor:'#3c46ff',color:'white'}} className=" btn  w-100">Log In</button>
         </div>
         <div className="mb-2 d-flex align-items-center justify-content-center">
           <button onClick={()=>{
@@ -84,7 +83,9 @@ function Login() {
           style={{backgroundColor:'transparent',color:'white',border:'none'}}
           className="mx-2 text-light w-100">Chat As A Guest</button>
         </div>
-      </div>
+          </div>
+        </div>
+    </div>
       <ToastContainer
         position="top-right"
         autoClose={3000}
