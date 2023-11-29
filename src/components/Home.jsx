@@ -46,7 +46,7 @@ function Home() {
                 </span>
               </p>
             </div>
-            <div className="ms-5 sub-content fs-5">
+            <div className="ms-4 ps-3 sub-content fs-5">
               <p>
                 Welcome to Chatify, the ultimate socializing platform where
                 connections happen in real-time! Whether you're looking to meet

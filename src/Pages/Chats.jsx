@@ -9,7 +9,7 @@ function Chats() {
   
   return (
     <>
-      <div className="row chat-bg" style={{backgroundColor:'rgb(0 0 46)',height:'100vh'}}>
+      <div className="row chat-bg" style={{backgroundColor:'#f5f7fa',height:'100vh'}}>
         <div className="col-4">
           <div className="">{user && <SearchBox />}</div> <div> {user && <MyChats />} </div>
         </div>
