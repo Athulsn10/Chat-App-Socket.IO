@@ -18,7 +18,7 @@ function SearchBox() {
   const [offcanvasShow, setOffcanvasShow] = useState(false);
   const [modalShow, setModalShow] = useState(false);
 
-  const { user, setSelectedChat,chats,setChats } = ChatState();
+  const { user, setSelectedChat,selectedChat,chats,setChats } = ChatState();
   const navigate = useNavigate();
 
   const firstNameLetter = user.name.charAt(0);
@@ -62,34 +62,49 @@ function SearchBox() {
       toast.error('Error Occured')
     }
   }
-  const accessChat = async (userId)=>{
+  const accessChat = async (userId) => {
     try {
-      setLoadingChat(true)
-      const config = {
-        headers:{
-          "Content-type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+      setLoadingChat(true);
+  
+      // Check if the selected user is already in the existing chats
+      const existingChat = chats.find((chat) => chat.users.includes(userId));
+  
+      if (existingChat) {
+        // Open the existing chat
+        setSelectedChat(existingChat);
+      } else {
+        // Create a new chat
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+  
+        const { data } = await axios.post('/api/chat', { userId }, config);
+  
+        // Check if the chat already exists in the state
+        if (!chats.find((chat) => chat._id === data._id)) {
+          setChats([data, ...chats]);
         }
+  
+        // Set the selected chat to the newly created chat
+        setSelectedChat(data);
+        console.log(selectedChat);
       }
-      const {data} = await axios.post('/api/chat',{userId},config)
-      if(!chats.find((e)=>e._id === data._id))
-      {
-        setChats([data,...chats])
-      }
-      setSelectedChat(data);
+  
       setLoadingChat(false);
-      setOffcanvasShow(false)
+      setOffcanvasShow(false);
     } catch (error) {
-      toast.error("error while fetching chats, check log")
-      console.log(error);
-      
+      toast.error("Error while fetching chats. Check the log.");
+      console.error(error);
     }
-
-  }
+  };
+  
   return (
     <>
       <div
-        className="mt-3 ms-3 rounded d-flex justify-content-between"
+        className="mt-3 rounded d-flex justify-content-between"
         style={{ backgroundColor: "white" }}
       >
         <div className="ms-2 p-3">

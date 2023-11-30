@@ -8,6 +8,7 @@ const ChatProvider = ({children})=>{
     const [selectedChat, setSelectedChat] = useState();
     const [user, setUser] = useState();
     const [chats, setChats] = useState([]);
+    const [fetchAgain, setFetchAgain] = useState(false)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,9 +24,8 @@ const ChatProvider = ({children})=>{
     return <ChatContext.Provider value={{
       user,setUser,
       selectedChat,setSelectedChat,
-      chats,setChats
-
-    
+      chats,setChats,
+      fetchAgain, setFetchAgain
     }}>{children}</ChatContext.Provider>;
 }
 
