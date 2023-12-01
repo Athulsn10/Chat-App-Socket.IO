@@ -9,6 +9,7 @@ import { ChatState } from "../../context/ChatProvider";
 import axios from "axios";
 import Placeholder from 'react-bootstrap/Placeholder';
 import UserList from "../avatar/UserList";
+import ModalGroup from "./ModalGroup";
 
 function SearchBox() {
   const [search, setSearch] = useState("");
@@ -36,16 +37,15 @@ function SearchBox() {
 
   const handleOffcanvasShow = () => setOffcanvasShow(true);
   const handleOffcanvasClose = () => {
-    
+    setSearchResult([])
     setOffcanvasShow(false);
+
   }
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
 
-  const handleSearch=async()=>{
-    if(!search){
-      toast.warning("Enter Username")
-    }
+  const handleSearch=async(query)=>{
+    setSearch(query);
     try {
       setLoading(true);
       const config = {
@@ -104,10 +104,11 @@ function SearchBox() {
   return (
     <>
       <div
-        className="mt-3 rounded d-flex justify-content-between"
+        fixed="top"
+        className="mt-3 nav rounded d-flex justify-content-between"
         style={{ backgroundColor: "white" }}
       >
-        <div className="ms-2 p-3">
+        <div className="ms-2 p-3 d-flex align-items-center">
           <Avatar
             onClick={handleModalShow}
             sx={{ bgcolor: storedColor }}
@@ -116,33 +117,33 @@ function SearchBox() {
             {firstNameLetter}
           </Avatar>
         </div>
-        <div className="p-3">
-          <button
-            onClick={handleOffcanvasShow}
-            className="btn"
-            style={{ border: "none" }}
-          >
-            <i className="fi fs-4 fi-br-search"></i>
-          </button>
+        <div className="d-flex align-items-center">
+          <ModalGroup >
+            <button style={{border:'none'}} className="btn p-0 m-0 d-flex align-items-center">
+           <i className="fs-5 fa-solid fa-user-group"></i>
+            </button>
+          </ModalGroup>
+          <div className="p-1">
+            <button
+              onClick={handleOffcanvasShow}
+              className="btn"
+              style={{ border: "none" }}
+            >
+              <i className="fi fs-4 fi-br-search"></i>
+            </button>
+          </div>
         </div>
       </div>
       <Offcanvas  style={{backgroundColor:'#f5f7fa'}} show={offcanvasShow} onHide={handleOffcanvasClose}>
         <Offcanvas.Header closeButton>
-          <div className="d-flex align-items-center justify-content-center m-0 p-0">
+          <div className="d-flex w-100  align-items-center justify-content-center m-0 p-0">
             <input
               style={{ boxShadow: "none" }}
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="form-control ms-4"
+              onChange={(e) => handleSearch(e.target.value)}
+              className="form-control"
               placeholder="Search for a user"
             />
-            <button
-              className="btn ms-2"
-              style={{ border: "none" }}
-              onClick={handleSearch}
-            >
-              <i className="fi fs-4 fi-br-search"></i>
-            </button>
           </div>
         </Offcanvas.Header>
         <Offcanvas.Body>

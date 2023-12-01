@@ -77,7 +77,7 @@ function ModalGroup({children}) {
 
   return (
    <>
-   <span onClick={handleModalShow}>{children}</span>
+   <span  className='d-flex align-items-center pb-2' onClick={handleModalShow}>{children}</span>
    <Modal
         show={modalShow}
         onHide={handleModalClose}
