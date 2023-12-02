@@ -48,12 +48,12 @@ function MyChats() {
                   style={{ backgroundColor: selectedChat === chat ? '#FFE8FF' : 'white' }}
                   key={chat._id}
                 >
-                  <p>
+                  <p className='m-0 p-0'>
                     {!chat.isGroupChat ? getSender(loggedUser, chat.users) : chat.chatName}
                   </p>
                   {chat.latestMessage && (
-                    <p className="font-size-xs">
-                      <strong>{chat.latestMessage.sender.name} : </strong>
+                    <p className="p-0 m-0 fw-bolder" style={{fontSize:'12px'}}>
+                      {chat.latestMessage.sender.name}:
                       {chat.latestMessage.content.length > 50
                         ? chat.latestMessage.content.substring(0, 51) + '...'
                         : chat.latestMessage.content}

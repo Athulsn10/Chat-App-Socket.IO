@@ -11,7 +11,7 @@ import UserList from "../avatar/UserList";
 import Placeholder from "react-bootstrap/esm/Placeholder";
 import PlaceholderButton from "react-bootstrap/esm/PlaceholderButton";
 
-function EditGroupModal() {
+function EditGroupModal({fetchMessages}) {
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
@@ -50,6 +50,7 @@ function EditGroupModal() {
     } catch (error) {
         console.log(error);
       toast.error('An error occurred');
+      fetchMessages();
       setLoading(false);
     }
     setGroupChatName("");

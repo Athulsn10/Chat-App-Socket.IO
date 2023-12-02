@@ -11,11 +11,11 @@ function Chats() {
   return (
     <div className="chat-bg vh-100 container-fluid" style={{ backgroundColor: '#f5f7fa' }}>
         <div className="row h-100">
-          <div className="col-md-4 flex-column vh-100" style={{ overflowY: 'hidden'}}>
+          <div className="col-lg-4 col-sm-12 col-md-9 flex-column vh-100" style={{ overflowY: 'hidden'}}>
             <div className="mb-3">{user && <SearchBox />}</div>
             <div className='h-100' >{user && <MyChats />}</div>
           </div>
-          <div className="col-md-8"  >
+          <div className="col-lg-8 col-sm-12 col-md-9"  >
             <div className="h-100" >{user && <ChatBox />}</div>
           </div>
         </div>
