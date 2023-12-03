@@ -126,7 +126,7 @@ function Signup() {
               onChange={(e) => setConfirmpassword(e.target.value)}
             />
 
-            <Form.Control
+            {/* <Form.Control
               className="mt-3"
               type="file"
               accept="image/*"
@@ -137,7 +137,7 @@ function Signup() {
               style={{ fontSize: "12px", color: "white" }}
             >
               Upload Your Profile Picture
-            </p>
+            </p> */}
             <div className="mb-2 d-flex align-items-center justify-content-center">
           <button
             onClick={submitHandler}
