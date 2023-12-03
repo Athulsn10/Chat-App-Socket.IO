@@ -6,19 +6,27 @@ import { ChatState } from "../context/ChatProvider";
 import './Chats.css'
 
 function Chats() {
-  const { user } = ChatState();
+  const { user, selectedChat } = ChatState();
   
   return (
-    <div className="chat-bg vh-100 container-fluid" style={{ backgroundColor: '#f5f7fa' }}>
-        <div className="row h-100">
-          <div className="col-lg-4 col-sm-12 col-md-9 flex-column vh-100" style={{ overflowY: 'hidden'}}>
-            <div className="mb-3">{user && <SearchBox />}</div>
-            <div className='h-100' >{user && <MyChats />}</div>
-          </div>
-          <div className="col-lg-8 col-sm-12 col-md-9"  >
-            <div className="h-100" >{user && <ChatBox />}</div>
-          </div>
+    <div className="vh-100 container-fluid chat-bg">
+      <div className="row h-100">
+        <div
+          className="col-lg-4 col-sm-12 col-md-9 flex-column m-0 ps-1 int1 "
+          style={{ overflowY: "hidden" }}
+        >
+          <div
+            className="search-box w-100"
+            style={{ display: selectedChat? window.innerWidth <= 576 ? "none" : "flex" :'flex' }}
+          >
+            {user && <SearchBox />}
+          </div>{" "}
+          <div className="h-100">{user && <MyChats />}</div>
         </div>
+        <div className="col-lg-8 col-sm-12 col-md-9 m-0 ps-0 pe-1">
+          <div className="h-100">{user && <ChatBox />}</div>
+        </div>
+      </div>
     </div>
   );
 }

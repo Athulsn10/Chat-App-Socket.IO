@@ -14,7 +14,10 @@ import PlaceholderButton from "react-bootstrap/esm/PlaceholderButton";
 function EditGroupModal({fetchMessages}) {
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
-  const handleModalClose = () => setModalShow(false);
+  const handleModalClose = () => {
+    setSearchResult([])
+    setModalShow(false);
+  }
   const [search, setSearch] = useState("");
   const [groupChatName, setGroupChatName] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -149,8 +152,14 @@ function EditGroupModal({fetchMessages}) {
 
   return (
     <>
-      <button className="btn btn-danger" onClick={handleModalShow}>Edit</button>
-      <Modal show={modalShow} onHide={handleModalClose} animation={false} centered>
+     <Avatar
+     onClick={handleModalShow}
+          sx={{ width: 53, height: 53, mr:1}}
+            src={user.pic ? user.pic : null}
+            >
+             {selectedChat.chatName.charAt(0).toUpperCase()}
+            </Avatar>
+      <Modal className="profile-modal" show={modalShow} onHide={handleModalClose} animation={false} centered>
         <Modal.Header closeButton>
           <Avatar>{selectedChat.chatName.slice(0, 1)}</Avatar>
         </Modal.Header>

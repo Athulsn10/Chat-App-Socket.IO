@@ -1,8 +1,10 @@
 import Avatar from "@mui/material/Avatar";
 import React, { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
+import { getSender } from '../../config/ChatLogic';
 
-function Modalprofile({user, children}) {
+
+function Modalprofile({user, selectedChat}) {
     const [modalShow, setModalShow] = useState(false);
     const handleModalShow = () => setModalShow(true);
     const handleModalClose = () => setModalShow(false);
@@ -12,16 +14,19 @@ function Modalprofile({user, children}) {
     storedColor = colors[Math.floor(Math.random() * colors.length)];
     sessionStorage.setItem('randomColor', storedColor);
   }
+  console.log(" selected" + selectedChat, user);
   return (
     
     <>
-    {children ? (
-        <span onClick={handleModalShow}>{children}</span>
-      ) : (
-        <i className="fa-solid fa-eye" onClick={handleModalShow}></i>
-      )}
-    <Modal show={modalShow} onHide={handleModalClose} animation={false} centered>
-        <Modal.Header closeButton>
+     <Avatar
+     onClick={handleModalShow}
+          sx={{ width: 53, height: 53, mr:1}}
+            src={user.pic ? user.pic : null}
+            >
+            {user.name.charAt(0).toUpperCase()}
+            </Avatar>
+    <Modal className="profile-modal" show={modalShow} onHide={handleModalClose} animation={false} centered>
+        <Modal.Header>
           <Modal.Title>Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>

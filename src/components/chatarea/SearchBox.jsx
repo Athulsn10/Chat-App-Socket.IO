@@ -103,117 +103,117 @@ function SearchBox() {
   
   return (
     <>
-      <div
-        fixed="top"
-        className="mt-3 nav rounded d-flex justify-content-between"
-        style={{ backgroundColor: "white" }}
-      >
-        <div className="ms-2 p-3 d-flex align-items-center">
-          <Avatar
-            onClick={handleModalShow}
-            sx={{ bgcolor: storedColor }}
-            src={user.pic ? user.pic : null}
-          >
-            {firstNameLetter}
-          </Avatar>
-        </div>
-        <div className="d-flex align-items-center">
-          <ModalGroup >
-            <button style={{border:'none'}} className="btn p-0 m-0 d-flex align-items-center">
-           <i className="fs-5 fa-solid fa-user-group"></i>
-            </button>
-          </ModalGroup>
-          <div className="p-1">
-            <button
-              onClick={handleOffcanvasShow}
-              className="btn"
-              style={{ border: "none" }}
-            >
-              <i className="fi fs-4 fi-br-search"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <Offcanvas  style={{backgroundColor:'#f5f7fa'}} show={offcanvasShow} onHide={handleOffcanvasClose}>
-        <Offcanvas.Header closeButton>
-          <div className="d-flex w-100  align-items-center justify-content-center m-0 p-0">
-            <input
-              style={{ boxShadow: "none" }}
-              value={search}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="form-control"
-              placeholder="Search for a user"
-            />
-          </div>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          
-            {loading ? (
-              <div style={{opacity:'0.2'}}>
-                 <Placeholder   xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-                 <Placeholder  xs={12} lg={12} md={12} />
-              </div>
-              
-            ) : (
-              searchResult?.map((user) => (
-                <UserList
-                key={user._id} 
-                user={user} 
-                handleFunction={()=>accessChat(user._id)}
-                />
-              ))
-            )}
-         
-        </Offcanvas.Body>
-      </Offcanvas>
-      <Modal
-        show={modalShow}
-        onHide={handleModalClose}
-        animation={false}
-        centered
-      >
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <div className="d-flex align-items-center justify-content-center">
+        <div
+          fixed="top"
+          className="mt-3 w-100  rounded d-flex justify-content-between search-box"
+        >
+          <div className="ms-2 p-3 d-flex align-items-center">
             <Avatar
-              sx={{ bgcolor: storedColor, width: 100, height: 100 }}
+              onClick={handleModalShow}
+              sx={{ bgcolor: storedColor }}
               src={user.pic ? user.pic : null}
             >
               {firstNameLetter}
             </Avatar>
           </div>
-          <h4 className="text-center m-0 pt-3">{user.name}</h4>
-          <p style={{ opacity: "0.6" }} className="text-center p-0 m-0">
-            {user.email}
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <button className="btn btn-danger" onClick={logout}>
-            Logout
-          </button>
-          <button className="btn btn-primary" onClick={handleModalClose}>
-            Close
-          </button>
-        </Modal.Footer>
-      </Modal>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+          <div className="d-flex align-items-center">
+            <ModalGroup >
+              <button style={{border:'none'}} className="btn p-0 m-0 d-flex align-items-center">
+             <i className="fs-5 fa-solid fa-user-group"></i>
+              </button>
+            </ModalGroup>
+            <div className="p-1">
+              <button
+                onClick={handleOffcanvasShow}
+                className="btn"
+                style={{ border: "none" }}
+              >
+                <i className="fi fs-4 fi-br-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <Offcanvas className="search-user-bg" show={offcanvasShow} onHide={handleOffcanvasClose}>
+          <Offcanvas.Header>
+            <div className="d-flex w-100  align-items-center justify-content-center m-0 p-0">
+              <input
+                style={{ boxShadow: "none",backgroundColor:'#262626',border:'none',color:'white' }}
+                value={search}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="form-control mt-2 search-input"
+                placeholder="Search for a user"
+              />
+            </div>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <p className="p-0 ms-3 my-0 text-light">Search results</p>
+              {loading ? (
+                <div style={{opacity:'0.2'}}>
+                   <Placeholder   xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                   <Placeholder  xs={12} lg={12} md={12} />
+                </div>
+                
+              ) : (
+                searchResult?.map((user) => (
+                  <UserList
+                  key={user._id} 
+                  user={user} 
+                  handleFunction={()=>accessChat(user._id)}
+                  />
+                ))
+              )}
+           
+          </Offcanvas.Body>
+        </Offcanvas>
+         <Modal
+      show={modalShow}
+      onHide={handleModalClose}
+      animation={false}
+      centered
+      className="profile-modal" // Add the custom class to the Modal
+    >
+      <Modal.Header closeButton></Modal.Header>
+      <Modal.Body>
+        <div className="d-flex align-items-center justify-content-center">
+          <Avatar
+            sx={{ bgcolor: storedColor, width: 100, height: 100 }}
+            src={user.pic ? user.pic : null}
+          >
+            {firstNameLetter}
+          </Avatar>
+        </div>
+        <h4 className="text-center m-0 pt-3">{user.name}</h4>
+        <p style={{ opacity: "0.6" }} className="text-center p-0 m-0">
+          {user.email}
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <button className="btn btn-danger" onClick={logout}>
+          Logout
+        </button>
+        <button className="btn btn-primary" onClick={handleModalClose}>
+          Close
+        </button>
+      </Modal.Footer>
+    </Modal>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
     </>
   );
 }

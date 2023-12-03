@@ -18,7 +18,10 @@ function ModalGroup({children}) {
     const [searchResult,setSearchResult] = useState([])
     const [loading, setLoading] = useState(false);
     const handleModalShow = () => setModalShow(true);
-    const handleModalClose = () => setModalShow(false);
+    const handleModalClose = () =>{
+      setSearchResult([])
+      setModalShow(false);
+    }
 
     const {user, chats, setChats} = ChatState();
 
@@ -76,37 +79,80 @@ function ModalGroup({children}) {
     }
 
   return (
-   <>
-   <span  className='d-flex align-items-center pb-2' onClick={handleModalShow}>{children}</span>
-   <Modal
+    <>
+      <span
+        className="d-flex align-items-center pb-2"
+        onClick={handleModalShow}
+      >
+        {children}
+      </span>
+      <Modal
         show={modalShow}
         onHide={handleModalClose}
         animation={false}
         centered
+        className="custom-modal"
       >
-        <Modal.Header closeButton> Create Group</Modal.Header>
-        <Modal.Body className='flex-column align-items-center'>
-          <input onChange={(e)=>setGroupChatName(e.target.value)} type="text" className='form-control mb-3' placeholder='group chat name' />
-          <input onChange={(e)=>handleSearch(e.target.value)} type="text" className='form-control mb-2' placeholder='Search Users' />
+        <p className='text-center p-2 fw-bolder m-0'> Create Group</p>
+        <Modal.Body className="flex-column align-items-center">
+          <input
+            style={{
+              boxShadow: "none",
+              backgroundColor: "#262626",
+              border: "none",
+              color: "white",
+            }}
+            onChange={(e) => setGroupChatName(e.target.value)}
+            type="text"
+            className="form-control mb-3"
+            placeholder="group chat name"
+          />
+          <input
+            style={{
+              boxShadow: "none",
+              backgroundColor: "#262626",
+              border: "none",
+              color: "white",
+            }}
+            onChange={(e) => handleSearch(e.target.value)}
+            type="text"
+            className="form-control mb-2"
+            placeholder="Search Users"
+          />
           <Stack direction="horizontal" gap={2}>
-              {
-                selectedUsers.map((u)=>(
-                <Badge className='d-flex align-items-center p-2' key={u._id} user={u} bg="primary">{u.name} <span  className='fw-bolder ms-2'><i onClick={() => handleDelete(u)} className="fa-solid fa-x" style={{color: '#ffffff'}}></i></span></Badge>
-                ))
-              }
+            {selectedUsers.map((u) => (
+              <Badge
+                className="d-flex align-items-center p-2"
+                key={u._id}
+                user={u}
+                bg="primary"
+              >
+                {u.name}{" "}
+                <span className="fw-bolder ms-2">
+                  <i
+                    onClick={() => handleDelete(u)}
+                    className="fa-solid fa-x"
+                    style={{ color: "#ffffff" }}
+                  ></i>
+                </span>
+              </Badge>
+            ))}
           </Stack>
-          {
-            loading?(
-                <p>loading..</p>
-            ):(
-                searchResult?.slice(0, 4).map((user)=>
-                <UserList key={user._id} user={user} handleFunction={()=> handleGroup(user)} />
-                )
-            )
-          }
+          {loading ? (
+            <p>loading..</p>
+          ) : (
+            searchResult
+              ?.slice(0, 4)
+              .map((user) => (
+                <UserList
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => handleGroup(user)}
+                />
+              ))
+          )}
         </Modal.Body>
         <Modal.Footer>
-          
           <button className="btn btn-primary" onClick={handleSubmit}>
             Create
           </button>
@@ -124,8 +170,8 @@ function ModalGroup({children}) {
         pauseOnHover
         theme="dark"
       />
-   </>
-  )
+    </>
+  );
 }
 
 export default ModalGroup
