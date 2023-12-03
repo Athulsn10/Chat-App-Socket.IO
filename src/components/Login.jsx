@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
-
+import {BASE_URL} from '../context/url'
+ 
 
 
 function Login() {
@@ -28,10 +29,11 @@ function Login() {
         },
       };
       const { data } = await axios.post(
-        "/api/user/login",
+        `${BASE_URL}/api/user/login`,
         { email, password},
         config
       );
+      console.log(BASE_URL);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setProgress(100)
       navigate("/chats");

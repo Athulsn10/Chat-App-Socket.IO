@@ -12,7 +12,7 @@ function ScrollableChat({ messages }) {
       {messages.map((m, i) => (
        <div className='flex-column' key={m._id}>
        <p
-         className='rounded-pill d-flex align-items-center mb-4 p-2'
+         className='rounded-pill d-flex align-items-center p-2'
          style={{
            width: 'fit-content',
            

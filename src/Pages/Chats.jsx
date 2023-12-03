@@ -10,7 +10,7 @@ function Chats() {
   
   return (
     <div className="vh-100 container-fluid chat-bg">
-      <div className="row h-100">
+      <div className="row h-100" style={{overflowY:'hidden'}}>
         <div
           className="col-lg-4 col-sm-12 col-md-9 flex-column m-0 ps-1 int1 "
           style={{ overflowY: "hidden" }}

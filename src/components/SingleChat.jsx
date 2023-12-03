@@ -10,9 +10,10 @@ import axios from 'axios';
 import ScrollableChat from './ScrollabelChat';
 import io from 'socket.io-client'
 import { Avatar } from '@mui/material';
+import { BASE_URL } from '../context/url';
 
 
-const SERVER_URL = "http://localhost:5000"
+
 var socket, selectedChatCompare;
 
 function SingleChat() {
@@ -33,7 +34,7 @@ function SingleChat() {
             },
           }
           setNewMessage('');
-          const{data} = await axios.post('/api/message',
+          const{data} = await axios.post(`${BASE_URL}/api/message`,
           
           {
             content: newMessage,
@@ -58,7 +59,7 @@ function SingleChat() {
             Authorization: `Bearer ${user.token}`
           },
         }
-        const {data} = await axios.get(`/api/message/${selectedChat._id}`
+        const {data} = await axios.get(`${BASE_URL}/api/message/${selectedChat._id}`
         ,config
         )
         setMessages(data)
@@ -71,7 +72,7 @@ function SingleChat() {
     }
 
     useEffect(()=>{
-      socket = io(SERVER_URL);
+      socket = io(BASE_URL);
       socket.emit('setup',user);
       socket.on('connection',()=>{ setSocketConnected(true)})
     },[])
@@ -142,16 +143,18 @@ function SingleChat() {
               </>
             )}
           </div>
-          <input
-            onChange={typingHandler}
-            placeholder="Type a message"
-            type="text"
-            value={newMessage}
-            required
-            style={{ boxShadow: "none",backgroundColor:'black',color:'white' }}
-            onKeyDown={sendMessage}
-            className="form-control w-100  mb-4 mt-3  p-3 rounded-pill chat-input"
-          />
+       <div className='w-100 mb-3' sticky="bottom">
+            <input
+              onChange={typingHandler}
+              placeholder="Type a message"
+              type="text"
+              value={newMessage}
+              required
+              style={{ boxShadow: "none",backgroundColor:'black',color:'white' }}
+              onKeyDown={sendMessage}
+              className="form-control w-100  mb-4 mt-3  p-3 rounded-pill chat-input"
+            />
+       </div>
         </>
       ) : (
         <div className="d-flex align-items-center justify-content-center">

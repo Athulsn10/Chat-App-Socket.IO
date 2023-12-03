@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChatState } from '../../context/ChatProvider';
 import { getSender } from '../../config/ChatLogic';
-import Stack from 'react-bootstrap/esm/Stack';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Avatar } from '@mui/material';
+import { BASE_URL } from '../../context/url';
 
 function MyChats() {
   const [loggedUser, setLoggedUser] = useState();
@@ -17,7 +17,7 @@ function MyChats() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get('/api/chat', config);
+      const { data } = await axios.get(`${BASE_URL}/api/chat`, config);
       setChats(data);
     } catch (error) {
       // Handle error
@@ -51,7 +51,7 @@ function MyChats() {
   return (
     <>
       <div
-        style={{ display: selectedChat ? "none" : "flex",overflowY:'scroll',maxHeight:'100vh' }}
+        style={{ display: selectedChat ? "none" : "flex",overflowY:'auto',maxHeight:'100vh' }}
         className="d-md-flex flex-column align-items-center h-100 p-1 my-chats rounded border-1px"
       >
         <div

@@ -10,6 +10,7 @@ import axios from 'axios';
 import UserList from "../avatar/UserList";
 import Placeholder from "react-bootstrap/esm/Placeholder";
 import PlaceholderButton from "react-bootstrap/esm/PlaceholderButton";
+import { BASE_URL } from "../../context/url";
 
 function EditGroupModal({fetchMessages}) {
   const [modalShow, setModalShow] = useState(false);
@@ -38,7 +39,7 @@ function EditGroupModal({fetchMessages}) {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/groupremove`,
+        `${BASE_URL}/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -73,7 +74,7 @@ function EditGroupModal({fetchMessages}) {
         };
 
         const { data } = await axios.put(
-          `/api/chat/rename`,
+          `${BASE_URL}/api/chat/rename`,
           {
             chatId: selectedChat._id,
             chatName: groupChatName,
@@ -104,7 +105,7 @@ function EditGroupModal({fetchMessages}) {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.get(`/api/user?search=${query}`, config);
+        const { data } = await axios.get(`${BASE_URL}/api/user?search=${query}`, config);
         console.log(data);
         setLoading(false);
         setSearchResult(data);
@@ -132,7 +133,7 @@ function EditGroupModal({fetchMessages}) {
           },
         };
         const { data } = await axios.put(
-          `/api/chat/groupadd`,
+          `${BASE_URL}/api/chat/groupadd`,
           {
             chatId: selectedChat._id,
             userId: user1._id,

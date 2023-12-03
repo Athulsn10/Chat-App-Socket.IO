@@ -7,6 +7,7 @@ import axios from 'axios';
 import UserList from '../avatar/UserList';
 import Badge from 'react-bootstrap/Badge';
 import Stack from 'react-bootstrap/Stack';
+import { BASE_URL } from '../../context/url';
 
 
 function ModalGroup({children}) {
@@ -37,7 +38,7 @@ function ModalGroup({children}) {
                   Authorization: `Bearer ${user.token}`,
                 },
             }
-            const {data} = await axios.get(`/api/user/?search=${search}`,config);
+            const {data} = await axios.get(`${BASE_URL}/api/user/?search=${search}`,config);
             // console.log(data);
             setLoading(false)
             setSearchResult(data)
@@ -55,7 +56,7 @@ function ModalGroup({children}) {
               Authorization: `Bearer ${user.token}`,
             },
         }
-        const {data} = await axios.post(`/api/chat/group`,{
+        const {data} = await axios.post(`${BASE_URL}/api/chat/group`,{
           name:groupChatName,
           users: JSON.stringify(selectedUsers.map((u)=>u._id))
         },config)

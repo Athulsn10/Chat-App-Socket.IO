@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
-import {MY_URL} from '../context/url'
+import { BASE_URL } from '../context/url';
 
 function Signup() {
    const [name, setName] = useState();
@@ -18,7 +18,6 @@ function Signup() {
 
 
    const postDetails = (pics) => {
-    console.log(`${MY_URL}`);
      setProgress(40)
      if (pics === undefined) {
        toast.error("select your profile photo");
@@ -76,7 +75,7 @@ function Signup() {
          },
        };
        const { data } = await axios.post(
-         "/api/user",
+         `${BASE_URL}/api/user`,
          { name, email, password, pic },
          config
        );
