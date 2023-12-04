@@ -135,7 +135,7 @@ function SingleChat() {
             ) : (
               <>
                 <div
-                  style={{ overflowY: "scroll" }}
+                  style={{ overflowY: "scroll",height:"100vh" }}
                   className="messages flex-column"
                 >
                   <ScrollableChat messages={messages} />
@@ -152,7 +152,7 @@ function SingleChat() {
               required
               style={{ boxShadow: "none",backgroundColor:'black',color:'white' }}
               onKeyDown={sendMessage}
-              className="form-control w-100  mb-4 mt-3  p-3 rounded-pill chat-input"
+              className="form-control w-100  mb-4 mt-3  p-3 rounded chat-input"
             />
        </div>
         </>

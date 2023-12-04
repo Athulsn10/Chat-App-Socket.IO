@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
 import { BASE_URL } from '../context/url';
 
@@ -147,6 +147,8 @@ function Signup() {
             Sign Up
           </button>
         </div>
+        <p className='p-0 m-0 text-center fw-bolder text-light'>Already a user? <Link style={{textDecoration:'none'}} to='/login'>Login</Link></p>
+
           </div>
           
         </div>

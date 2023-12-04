@@ -33,13 +33,13 @@ function Login() {
         { email, password},
         config
       );
-      console.log(BASE_URL);
+      // console.log(BASE_URL);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setProgress(100)
       navigate("/chats");
     } catch (error) {
       setProgress(0)
-      console.log(progress);
+      // console.log(progress);
       console.log(error);
       toast.error('invalid credentials')
     }
@@ -85,6 +85,7 @@ function Login() {
           style={{backgroundColor:'transparent',color:'white',border:'none'}}
           className="mx-2 text-light w-100">Chat As A Guest</button>
         </div>
+        <p className='p-0 m-0 text-center fw-bolder text-light'>New to chatify? <Link style={{textDecoration:'none'}} to='/signup'>Signup</Link></p>
           </div>
         </div>
     </div>

@@ -64,7 +64,7 @@ function Home() {
         </div>
         <div className="pt-5 developed " style={{ overflowX: 'hidden' }}>
             <p className="text-center fs-3 fw-bolder " >Developed using </p>
-            <div style={{color:'grey'}} className="d-flex justify-content-center  fs-1">
+            <div style={{color:'grey'}} className="d-flex justify-content-center py-2  fs-1">
               <i className="me-3 fa-brands developed-icon fa-react"></i>
               <i className="mx-3 fa-brands developed-icon fa-css3-alt"></i>
               <i className="mx-3 fa-brands developed-icon fa-html5"></i>
