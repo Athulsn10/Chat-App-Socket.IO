@@ -16,6 +16,7 @@ function ModalGroup({children}) {
     const [groupChatName,setGroupChatName] = useState();
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [search,setSearch] = useState("")
+    const [searchInput,setSearchInput] = useState("")
     const [searchResult,setSearchResult] = useState([])
     const [loading, setLoading] = useState(false);
     const handleModalShow = () => setModalShow(true);
@@ -26,11 +27,8 @@ function ModalGroup({children}) {
 
     const {user, chats, setChats} = ChatState();
 
-    const handleSearch =async(query)=>{
-        setSearch(query);
-        if(!query){
-            return
-        }
+    const handleSearch =async()=>{
+        setSearch(searchInput);
         try {
             setLoading(true);
             const config = {
@@ -97,33 +95,30 @@ function ModalGroup({children}) {
         <p className='text-center p-2 fw-bolder m-0'> Create Group</p>
         <Modal.Body className="flex-column align-items-center">
           <input
-            style={{
-              boxShadow: "none",
-              backgroundColor: "#262626",
-              border: "none",
-              color: "white",
-            }}
+         style={{
+          boxShadow: "none"
+        }}
             onChange={(e) => setGroupChatName(e.target.value)}
             type="text"
             className="form-control mb-3"
             placeholder="group chat name"
           />
-          <input
-            style={{
-              boxShadow: "none",
-              backgroundColor: "#262626",
-              border: "none",
-              color: "white",
-            }}
-            onChange={(e) => handleSearch(e.target.value)}
-            type="text"
-            className="form-control mb-2"
-            placeholder="Search Users"
-          />
+         <div className='d-flex'>
+            <input
+              style={{
+                boxShadow: "none"
+              }}
+              onChange={(e) => setSearchInput(e.target.value)}
+              type="text"
+              className="form-control mb-2"
+              placeholder="Search Users"
+            />
+            <button className='btn' style={{border:'none'}} onClick={handleSearch}><i className="fa-solid fs-4 fa-magnifying-glass"></i></button>
+         </div>
           <Stack direction="horizontal" gap={2}>
             {selectedUsers.map((u) => (
               <Badge
-                className="d-flex align-items-center p-2"
+                className="d-flex align-items-center m-1 p-2"
                 key={u._id}
                 user={u}
                 bg="primary"
@@ -154,7 +149,7 @@ function ModalGroup({children}) {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-primary" onClick={handleSubmit}>
+          <button className="btn" style={{backgroundColor:'#7341e9',color:'white'}} onClick={handleSubmit}>
             Create
           </button>
         </Modal.Footer>

@@ -5,7 +5,7 @@ import SingleChat from '../SingleChat';
 function ChatBox() {
   const { selectedChat,fetchAgain,setFetchAgain } = ChatState();
   return (
-    <div className='vh-100 px-4  md-flex flex-column align-items-center' style={{display:selectedChat?'flex':'none',backgroundColor:'black'}}>
+    <div className='vh-100 md-flex flex-column align-items-center' style={{display:selectedChat?'flex':'none',backgroundColor:'#f8fafc'}}>
       <SingleChat/>
     </div>
   )

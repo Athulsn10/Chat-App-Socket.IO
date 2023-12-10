@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
+import Accordion from 'react-bootstrap/Accordion';
 import Header from "./Header";
 import "./Home.css";
 import { useNavigate, Link } from "react-router-dom";
 import Footer from './Footer'
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 function Home() {
   const navigate = useNavigate();
@@ -15,79 +19,136 @@ function Home() {
      navigate("/chats");
     }
   }, [navigate]);
-  const [text] = useTypewriter({
-    words: [
-      "Connect with Friends..",
-      "Engage in Conversations..",
-      "Brainstorm Ideas..",
-      "Login Now",
-    ],
-    loop: true,
-    typeSpeed: 20,
-    deleteSpeed: 10,
-    delaySpeed: 1000,
-  });
-
+ 
   return (
     <>
-      <div className="">
-        <Header />
-        <div className="c1 pb-5 " style={{ height: "fit-content" }}>
-          <div className="fs-3  justify-content-start mt-5 pt-5">
-            <div
-              className="ms-4 ps-3 d-flex align-items-center"
-              style={{ height: "270px" }}
-            >
-              <p className="fs-2 fw-bolder" style={{ color: "#d292ff" }}>
-                <p className="m-0 fw-bolder fs-1">Use Chatify !</p>
-                <span>{text}</span>
-                <span>
-                  <Cursor />
-                </span>
-              </p>
-            </div>
-            <div className="ms-4 ps-3 sub-content fs-5">
-              <p>
-                Welcome to Chatify, the ultimate socializing platform where
-                connections happen in real-time! Whether you're looking to meet
-                new friends or catch up with old ones, Chatify is the place to
-                be. Engage in one-on-one conversations with strangers from
-                around the world
-              </p>
-              <Link to={"/signup"}>
-                <button className="btn px-4 py-2 rounded-pill btn-primary">
-                  Get Started
-                </button>
-              </Link>
-            </div>
-          </div>
+      <Header />
+      <div style={{ overflow: "hidden" }} className=" bg mx-lg-5 mx-md-5 mx-3">
+        <div className=" d-flex flex-column align-items-center justify-content-center h-100">
+          <p
+            style={{ fontWeight: "400", color: "white" }}
+            className=" text-center top-p m-0 p-0"
+          >
+            Convo Simplified
+          </p>
+          <button className=" btn mt-2 py-2 rounded-pill px-4"
+          style={{ backgroundColor: "#9439ef", color: 'white', border: 'none' }}
+          >
+            Get started
+          </button>
         </div>
-        <div className="pt-5 developed " style={{ overflowX: 'hidden' }}>
-            <p className="text-center fs-3 fw-bolder " >Developed using </p>
-            <div style={{color:'grey'}} className="d-flex justify-content-center py-2  fs-1">
-              <i className="me-3 fa-brands developed-icon fa-react"></i>
-              <i className="mx-3 fa-brands developed-icon fa-css3-alt"></i>
-              <i className="mx-3 fa-brands developed-icon fa-html5"></i>
-              <i className="mx-3 fa-brands developed-icon fa-envira"></i>
-              <img className="developed-img developed-icon"  src="https://www.cdnlogo.com/logos/s/14/socket-io.svg" ></img>
-            </div>
-          </div>
-        <Footer />
       </div>
-      {/* <div className="mob">
-        <div className="c3" >
-          <div className=" my-0 ms-3 p-0">
-            <p className=" para">
-              Welcome to Chatify, the ultimate socializing platform where
-              connections happen in real-time! Whether you're looking to meet
-              new friends or catch up with old ones, Chatify is the place to be.
-              Engage in one-on-one conversations with strangers from around the
-              world
+      <div
+        style={{ overflow: "hidden" }}
+        className="container-fluid ms-lg-5 ms-md-5 ms-3 pt-5"
+        data-aos="fade-up"
+        data-aos-anchor-placement="center-bottom"
+      >
+        <div className="row ms-lg-5 mt-5" style={{ overflow: "hidden" }}>
+          <div className="col-lg-6 col-sm-12 col-md-6">
+            <p className="m-0 p-0 p1">Connecting people</p>
+            <p className="m-0 p-0 p2">
+              <span className="p-0 m-0" style={{ color: "#F4B400" }}>
+                Conversation
+              </span>{" "}
+              Simplified
             </p>
-            <button className="btn btn-primary py-2 px-5">Get Started</button>
+            <p className="m-0 p-0 p3">
+              {" "}
+              Chatify: Your go-to destination for effortless conversations and
+              instant connections. Our user-friendly chat app enhances your
+              messaging experience, making every interaction a seamless and
+              enjoyable journey. Stay connected, share moments, and express
+              yourself with ease on Chatify!
+            </p>
+            <button
+              style={{ backgroundColor: "#9439ef", color: "white" }}
+              className=" btn my-4 fs-5 py-3  rounded-pill px-5"
+            >
+              Get started
+            </button>
+          </div>
+          <div className="col-lg-6 col-sm-12 col-md-6" data-aos="fade-up-left">
+            <div className="container-fluid ps-lg-5 ms-lg-5">
+              <div className="row">
+                <div
+                  className="col-lg-6 col-sm-6 m-1 box-sq"
+                  style={{ backgroundColor: "#9439ef", borderRadius: "10px" }}
+                ></div>
+                <div
+                  className="col-lg-6 col-sm-6 m-1 box-sq"
+                  style={{ backgroundColor: "#F4B400", borderRadius: "10px" }}
+                ></div>
+              </div>
+              <div className="row">
+                <div
+                  className="col-lg-6 col-sm-6 m-1 box-sq"
+                  style={{ backgroundColor: "#F4B400", borderRadius: "10px" }}
+                ></div>
+                <div
+                  className="col-lg-6 col-sm-6 m-1 box-sq"
+                  style={{ backgroundColor: "#9439ef", borderRadius: "10px" }}
+                ></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div> */}
+      </div>
+      <div style={{ overflow: "hidden" }} className="container-fluid mt-5 ">
+        <div className="row pt-5">
+          <div data-aos="fade-right" className="col-lg-8 col-md-6 col-sm-12">
+            <div
+              className="rounded mb-5 bg-2 img-fluid shadow"
+            ><img src="/images/phone2.jpg" className="img-fluid" alt="a" /></div>
+          </div>
+          <div
+            data-aos="fade-left"
+            className="col-lg-4 col-md-6 col-sm-12"
+          >
+             <p className="m-0 p-0 mb-3 p2" style={{ color: "#F4B400" }}>
+             View complete<br/>
+              <span className="p-0 m-0" style={{ color: "#9439ef" }}>
+                 project in
+              </span>{" "}
+              <a style={{textDecoration:'none',color:'black'}} href="https://github.com/Athulsn10/Chatify-MERN-frontend" target="_blank">Github<i class="fa-solid fs-2 ps-3 fa-arrow-up-right-from-square"></i></a>
+            </p>
+            <Accordion style={{ border: "none" }} defaultActiveKey="0">
+              <Accordion.Item style={{ border: "none" }} eventKey="2">
+                <Accordion.Header>About</Accordion.Header>
+                <Accordion.Body>
+                  Welcome to Chatify, the premier chat application at the
+                  forefront of instant communication. With a foundation built on
+                  Socket.IO and the reliable MERN stack, we bring you a platform
+                  that seamlessly combines real-time connectivity with
+                  user-friendly design. At Chatify, we prioritize your privacy,
+                  ensuring secure interactions while offering effortless
+                  multimedia integration to enhance your messaging experience.
+                  Our commitment to personalization, cross-platform
+                  accessibility, and fostering vibrant communities sets Chatify
+                  apart as the ultimate destination for dynamic and secure
+                  conversations. Join us as we redefine the art of
+                  communication—welcome to Chatify, where connections come alive
+                  effortlessly.
+                </Accordion.Body>
+              </Accordion.Item>
+               <Accordion.Item style={{ border: "none" }} eventKey="1">
+                <Accordion.Header>Why Chatify?</Accordion.Header>
+                <Accordion.Body>
+                  Chatify, a dynamic chat app powered by Socket.IO and the
+                  robust MERN stack, revolutionizes messaging with real-time
+                  connections and user-friendly design. Offering privacy,
+                  multimedia integration, and community features, Chatify
+                  ensures a secure, seamless, and enjoyable chat experience
+                  across devices. Elevate your conversations with Chatify—where
+                  connections come to life effortlessly.
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
     </>
   );
 }

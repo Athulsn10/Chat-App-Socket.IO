@@ -16,7 +16,7 @@ function Signup() {
    const navigate = useNavigate();
    const [progress, setProgress] = useState(0)
 
-
+  
    const postDetails = (pics) => {
      setProgress(40)
      if (pics === undefined) {
@@ -59,6 +59,7 @@ function Signup() {
    };
 
    const submitHandler = async () => {
+    
      if (!name || !email || !password || !confirmpassword) {
        toast.warn("Fill all fields");
        return;
@@ -95,10 +96,10 @@ function Signup() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-      <div className="d-flex justify-content-center" style={{height:'100vh',backgroundColor:'rgb(0 0 46)'}}>
+      <div className="d-flex justify-content-center">
         <div className=" d-flex align-items-center justify-content-center " style={{width:'340px'}}>
           <div className="container-fluid">
-          <h4 className='text-light text-center'>Sign Up</h4>
+          <h4 className='text-dark fw-bolder text-center'>Sign Up</h4>
 
             <Form.Control
               className="my-3"
@@ -108,7 +109,7 @@ function Signup() {
             />
             <Form.Control
               className="my-3"
-              placeholder="Email"
+              placeholder="jason@example.com"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -140,15 +141,13 @@ function Signup() {
             <div className="mb-2 d-flex align-items-center justify-content-center">
           <button
             onClick={submitHandler}
-            style={{ backgroundColor: "#3c46ff", color: "white" }}
+            style={{ backgroundColor: "#9439ef", color: "white" }}
             className=" btn  w-100"
             // loading={loading}
           >
             Sign Up
           </button>
         </div>
-        <p className='p-0 m-0 text-center fw-bolder text-light'>Already a user? <Link style={{textDecoration:'none'}} to='/login'>Login</Link></p>
-
           </div>
           
         </div>

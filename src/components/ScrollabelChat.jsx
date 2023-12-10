@@ -15,20 +15,21 @@ function ScrollableChat({ messages }) {
   return (
     <ScrollableFeed>
     {messages.map((m, i) => (
-      <div className='flex-column' key={m._id}>
+      <div className='flex-column' style={{backgroundColor:'white'}} key={m._id}>
         <div
-          className=' align-items-center pe-5 ps-3 py-2'
+          className='align-items-center pe-5 ps-3 py-2'
           style={{
             width: 'fit-content',
-            borderRadius: '12px',
-            backgroundColor: m.sender._id === user._id ? '#3797f0' : '#262626',
+            maxWidth:'300px',
+            borderRadius: m.sender._id === user._id ? '20px 20px 0 20px' : '20px 20px 20px 0px',
+            backgroundColor: m.sender._id === user._id ? '#7341e9' : '#e9eff5',
             marginLeft: isSameSenderMargin(messages, m, i, user._id),
             marginTop: isSameUser(messages, m, i, user._id) ? 3 : 10,
             color: 'white'
           }}
         >
-          <p className='m-0 p-0 fw-bolder' style={{ fontSize: '14px', display: m.sender._id === userInfo._id ? 'none' : 'flex', color: '#9C27B0' }}>{m.sender.name}</p>
-          <span className='' style={{ overflowWrap: 'break-word' }}>{m.content}</span>
+          <p className='m-0 p-0 fw-bolder' style={{ fontSize: '14px', display: m.sender._id === userInfo._id ? 'none' : 'flex', color: '#9C27B0'}}>{m.sender.name}</p>
+          <span className='' style={{overflowWrap: 'break-word', color:m.sender._id === user._id ? 'white' : 'black' }}>{m.content}</span>
         </div>
       </div>
     ))}

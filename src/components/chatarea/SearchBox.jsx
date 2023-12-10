@@ -19,6 +19,8 @@ function SearchBox() {
   const [loadingChat, setLoadingChat] = useState(false);
   const [offcanvasShow, setOffcanvasShow] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const [searchInput,setSearchInput] = useState("")
+
 
   const { user, setSelectedChat,selectedChat,chats,setChats } = ChatState();
   const navigate = useNavigate();
@@ -45,8 +47,8 @@ function SearchBox() {
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
 
-  const handleSearch=async(query)=>{
-    setSearch(query);
+  const handleSearch=async()=>{
+    setSearch(searchInput);
     try {
       setLoading(true);
       const config = {
@@ -106,12 +108,12 @@ function SearchBox() {
     <>
         <div
           fixed="top"
-          className="mt-3 w-100  rounded d-flex justify-content-between search-box"
+          className="mt-lg-3  shadow w-100 rounded d-flex justify-content-between search-box"
         >
           <div className="ms-2 p-3 d-flex align-items-center">
             <Avatar
               onClick={handleModalShow}
-              sx={{ bgcolor: storedColor }}
+              sx={{ bgcolor: storedColor,width:50,height:50 }}
               src={user.pic ? user.pic : null}
             >
               {firstNameLetter}
@@ -119,8 +121,8 @@ function SearchBox() {
           </div>
           <div className="d-flex align-items-center">
             <ModalGroup >
-              <button style={{border:'none'}} className="btn p-0 m-0 d-flex align-items-center">
-             <i className="fs-5 fa-solid fa-user-group"></i>
+              <button style={{border:'none'}} className="btn  m-0 d-flex align-items-center">
+             <i className="fs-4 py-1 fa-solid fa-user-group" style={{color:"#7741ea"}}></i>
               </button>
             </ModalGroup>
             <div className="p-1">
@@ -129,7 +131,7 @@ function SearchBox() {
                 className="btn"
                 style={{ border: "none" }}
               >
-                <i className="fi fs-4 fi-br-search"></i>
+                <i className="fi fs-4 fi-br-search" style={{color:"#7741ea"}}></i>
               </button>
             </div>
           </div>
@@ -138,16 +140,16 @@ function SearchBox() {
           <Offcanvas.Header>
             <div className="d-flex w-100  align-items-center justify-content-center m-0 p-0">
               <input
-                style={{ boxShadow: "none",backgroundColor:'#262626',border:'none',color:'white' }}
-                value={search}
-                onChange={(e) => handleSearch(e.target.value)}
-                className="form-control mt-2 search-input"
+                style={{ boxShadow: "none",border:'none' }}
+                onChange={(e) => setSearchInput(e.target.value)}                className="form-control mt-2 search-input"
                 placeholder="Search for a user"
               />
+              <button className='btn' style={{border:'none'}} onClick={handleSearch}><i className="fa-solid fs-4 fa-magnifying-glass"></i></button>
+
             </div>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <p className="p-0 ms-3 my-0 text-light">Search results</p>
+            <p className="p-0 ms-3 my-0 text-dark">Search results</p>
               {loading ? (
                 <div style={{opacity:'0.2'}}>
                    <Placeholder   xs={12} lg={12} md={12} />

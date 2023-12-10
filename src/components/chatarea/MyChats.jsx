@@ -41,7 +41,7 @@ function MyChats() {
     "#FFC107",
     "#795548",
   ];
-
+  
   const getRandomColor = () => {
     const randomIndex = Math.floor(Math.random() * randomColors.length);
     return randomColors[randomIndex];
@@ -52,25 +52,25 @@ function MyChats() {
     <>
       <div
         style={{ display: selectedChat ? "none" : "flex",overflowY:'auto',maxHeight:'100vh' }}
-        className="d-md-flex flex-column align-items-center h-100 p-1 my-chats rounded border-1px"
+        className="d-md-flex flex-column align-items-center h-100 p-1  rounded border-1px"
       >
         <div
           className="ps-3 mt-2 d-flex w-100 justify-content-between align-items-center"
-          style={{ overflowY: "hidden" }}
+          
         >
-          <p className="p-0 m-0 fw-bolder fs-5">Messages</p>
+          <p className="p-0 m-0 fw-bolder fs-3">Chats</p>
         </div>
-        <div className="flex-column  h-100 w-100  my-chats-in " >
+        <div className="flex-column pb-5 mb-5  w-100" style={{overflow:'scroll'}} >
           {chats ? (
-            <ListGroup variant="flush" className="chat-list mx-2" >
+            <ListGroup variant="flush"  >
               {chats.map((chat) => (
                 <ListGroup.Item
                   onClick={() => setSelectedChat(chat)}
-                  className="p-3 d-flex align-items-center"
+                  className="p-3 m-1 d-flex align-items-center rounded"
                   style={{
                     backgroundColor:
-                      selectedChat === chat ? "#262626" : "#000000",
-                    color: "white",
+                      selectedChat === chat ? "#d5c1ff" : "#ffffff",
+                    color: "black",
                   }}
                   key={chat._id}
                 >
@@ -98,7 +98,7 @@ function MyChats() {
                           {chat.latestMessage.sender.name}:
                         </span>
                         {chat.latestMessage.content.length > 50
-                          ? chat.latestMessage.content.substring(0, 51) + "..."
+                          ? chat.latestMessage.content.substring(0, 20) + "..."
                           : chat.latestMessage.content}
                       </p>
                     )}
@@ -111,7 +111,7 @@ function MyChats() {
           )}
           <p
             className="text-center mt-2"
-            style={{ opacity: "0.7", fontSize: "13px", color: "white" }}
+            style={{ opacity: "0.7", fontSize: "13px", color: "black" }}
           >
             Chatify 2023
           </p>

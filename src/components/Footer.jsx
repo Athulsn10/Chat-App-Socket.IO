@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <>
-    <div  style={{color:'white',backgroundColor:'rgb(0 0 46)'}}>
+    <div  style={{color:'black',backgroundColor:'white'}}>
       <footer className='mt-5'>
         <p className='text-center fs-5 m-0 p-0 fw-bolder' style={{color:'white'}}>Chatify</p>
       <div className='d-flex align-items-center justify-content-center mt-1 mb-0'>

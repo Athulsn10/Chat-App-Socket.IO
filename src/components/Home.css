@@ -1,43 +1,84 @@
-.c1{
-    background-color:rgb(0 0 46);
-    color: #d292ff;
+.bg {
+    background-image: url('https://assets-global.website-files.com/64c101129d23396724b5b03e/64c101129d23396724b5b046_hand-atf.webp');
+    background-size:cover;
+    border-radius: 30px;
+    
 }
-.developed{
-    background-color:rgb(0 0 46);
-    color: #d292ff;
-    overflow-x: hidden;
-  }
-      
-      .developed-icon {
-        transition: transform 0.3s ease-in-out;
-      }
-      
-      .developed-icon:hover {
-        transform: scale(1.2);
-      }
-      
+/* .bg-2{
+    background-image: url('../../public/images/phone2.jpg');
+    background-size:cover;
+    background-position: center;
+} */
 
 
-/* phone */
+/* Adjustments for mobile devices */
 @media (max-width: 767px) {
-    .sub-content{
-        max-width: 70%;
+    .bg {
+        height: 85dvh;
+        border-radius: 15px;
+        background-position: center;
     }
-    .developed-img{
-        width: 30px;
-        opacity: 0.5;
+    
+    .top-p{
+        font-size: 25px;
+    }
+    .p1{
+        font-size: 20px;
+    }
+    .p2{
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 100%;
+        overflow: hidden;
+    }
+    .box-sq{
+        height: 140px; ;
+        width:140px ;
+    }
+
+}
+
+/* Adjustments for medium-sized screens */
+@media (min-width: 768px) and (max-width: 991px) {
+    .bg {
+    height: 85dvh;
+    background-position: center;
+    }
+    .p1{
+        font-size: 30px;
+    }
+    .p2{
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 100%;
+        overflow: hidden;
+    }
+    .box-sq{
+        height: 200px;
+        width: 200px ;
     }
 }
 
-/* desktop */
-@media (min-width: 768px) {
-    .sub-content{
-        max-width: 50%;
+/* Additional styles for larger screens if needed */
+@media (min-width: 992px) {
+    .bg {
+        height: 85dvh;
+        
     }
-    .developed-img{
-        width: 40px;
-        opacity: 0.5;
-
+    .top-p{
+        font-size: 70px;
+    }
+    .p1{
+        font-size: 30px;
+    }
+    .p2{
+        font-size: 55px;
+        font-weight: 600;
+        line-height: 114%;
+        overflow: hidden;
+    }
+    .box-sq{
+        height: 250px;
+        width:250px ;
     }
 }
-

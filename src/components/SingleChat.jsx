@@ -17,38 +17,45 @@ import { BASE_URL } from '../context/url';
 var socket, selectedChatCompare;
 
 function SingleChat() {
-    const {fetchAgain,setFetchAgain,user,selectedChat,setSelectedChat } = ChatState();
+    const {user,selectedChat,setSelectedChat } = ChatState();
     // console.log(selectedChat);
     const [messages, setMessages] = useState([]);
     const [loading ,setLoading] = useState(false);
     const [newMessage, setNewMessage] = useState();
     const [socketConnected, setSocketConnected] = useState(false)
 
-    const sendMessage= async(event)=>{
-      if(event.key === 'Enter' && newMessage){
-        try{
+    const sendMessage = async (source) => {
+      if (newMessage) {
+        try {
           const config = {
             headers: {
               "Content-type": "application/json",
               Authorization: `Bearer ${user.token}`,
             },
-          }
+          };
           setNewMessage('');
-          const{data} = await axios.post(`${BASE_URL}/api/message`,
-          
-          {
+          const { data } = await axios.post(`${BASE_URL}/api/message`, {
             content: newMessage,
-            chatId: selectedChat._id
-          }, config)
-          socket.emit('new message', data)
-          setMessages([...messages,data])
-          // console.log(data);
-        }catch(error){
-            toast.error('Failed to sent')
+            chatId: selectedChat._id,
+          }, config);
+          socket.emit('new message', data);
+          setMessages([...messages, data]);
+        } catch (error) {
+          toast.error('Failed to send');
         }
       }
-    }
+    };
 
+    const sendMessageEnter = (event) => {
+      if (event.key === 'Enter') {
+        sendMessage('enter');
+      }
+    };
+    
+    // Call sendMessage with button click
+    const sendMessageBtn = () => {
+      sendMessage('button');
+    };
     const fetchMessages= async()=>{
       if(!selectedChat){
         return
@@ -80,6 +87,7 @@ function SingleChat() {
     useEffect(()=>{
       fetchMessages()
       selectedChatCompare = selectedChat;
+      // console.log('selectec chat: ',selectedChat)
     },[selectedChat])
 
     useEffect(()=>{
@@ -103,11 +111,11 @@ function SingleChat() {
       {selectedChat ? (
         <>
           <div
-            style={{ overflowY: "hidden",backgroundColor:'black',borderBottom:'2px',color:'white',borderColor:"white" }}
-            className="d-flex p-4  align-items-center w-100 px-2"
+            style={{ overflow: "hidden",backgroundColor:'white',color:'black' }}
+            className="d-flex p-4 m-1  align-items-center w-100"
           >
             <i
-              className="fa-solid fa-arrow-left-long me-2"
+              className="fa-solid fs-5 fa-arrow-left-long mx-2"
               onClick={() => setSelectedChat("")}
             ></i>
             {!selectedChat.isGroupChat ? (
@@ -118,7 +126,7 @@ function SingleChat() {
             ) : (
               <>
                 <EditGroupModal fetchMessages={fetchMessages}></EditGroupModal>
-                <p className="p-0 m-0 fw-bolder" style={{ fontSize: "20px" }}>
+                <p className="p-0 m-0 fw-bolder " style={{ fontSize: "20px" }}>
                   {selectedChat.chatName}
                 </p>{" "}
               </>
@@ -126,7 +134,7 @@ function SingleChat() {
           </div>
           <div
             className="flex-column justify-content-end w-100 h-100 p-3"
-            style={{ backgroundColor: "black" }}
+            style={{ backgroundColor: "white" }}
           >
             {loading ? (
               <div className="h-100 d-flex justify-content-center align-items-center">
@@ -135,30 +143,31 @@ function SingleChat() {
             ) : (
               <>
                 <div
-                  style={{ overflowY: "scroll",height:"100vh" }}
-                  className="messages flex-column"
+                  style={{ overflowY: "scroll" }}
+                  className="flex-column h-100"
                 >
                   <ScrollableChat messages={messages} />
                 </div>
               </>
             )}
           </div>
-       <div className='w-100 mb-3' sticky="bottom">
+          <div className='w-100 mb-3 d-flex ' sticky="bottom" style={{overflow:'hidden'}}>
             <input
               onChange={typingHandler}
               placeholder="Type a message"
               type="text"
               value={newMessage}
               required
-              style={{ boxShadow: "none",backgroundColor:'black',color:'white' }}
-              onKeyDown={sendMessage}
-              className="form-control w-100  mb-4 mt-3  p-3 rounded chat-input"
+              style={{ boxShadow: "none",backgroundColor:'',color:'black' }}
+              onKeyDown={sendMessageEnter}
+              className="form-control w-100 me-2  mb-1 mt-2 p-4 rounded chat-input"
             />
+            <button onClick={sendMessageBtn} className='btn mb-1 mt-2 d-flex align-items-center justify-content-center' style={{backgroundColor:"#7341e9"}}><i class="fa-solid fs-4 fa-paper-plane" style={{color:'white'}}></i></button>
        </div>
         </>
       ) : (
         <div className="d-flex align-items-center justify-content-center">
-          <h3 style={{ color: "black" }}>Chatify</h3>
+          <h3 className='text-center'>Chatify</h3>
         </div>
       )}
 

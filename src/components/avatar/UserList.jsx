@@ -7,7 +7,7 @@ function UserList({user, handleFunction}) {
   return (
     <>
       <ListGroup variant="flush" onClick={handleFunction} className="w-100">
-       <ListGroup.Item style={{backgroundColor:'black', color:'white'}} className='d-flex align-items-center'>
+       <ListGroup.Item style={{ color:'black'}} className='border m-1 d-flex align-items-center'>
           <Avatar
             src={user.pic ? user.pic : null}
           >

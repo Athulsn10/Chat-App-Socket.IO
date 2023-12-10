@@ -23,6 +23,7 @@ function EditGroupModal({fetchMessages}) {
   const [groupChatName, setGroupChatName] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchInput,setSearchInput] = useState("")
   const [renameload, setRenameload] = useState(false);
   const { fetchAgain, setFetchAgain, user, selectedChat, setSelectedChat } = ChatState();
 
@@ -93,28 +94,23 @@ function EditGroupModal({fetchMessages}) {
     }
   };
 
-  const handleSearch = async (query) => {
-    setSearch(query);
-    if (!query) {
-      toast.warning('Enter username');
-    } else {
-      try {
+  const handleSearch =async()=>{
+    setSearch(searchInput);
+    try {
         setLoading(true);
         const config = {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        };
-        const { data } = await axios.get(`${BASE_URL}/api/user?search=${query}`, config);
-        console.log(data);
-        setLoading(false);
-        setSearchResult(data);
-      } catch (error) {
-        toast.error('Error occurred');
-        setLoading(false);
-      }
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+        }
+        const {data} = await axios.get(`${BASE_URL}/api/user/?search=${search}`,config);
+        // console.log(data);
+        setLoading(false)
+        setSearchResult(data)
+    } catch (error) {
+        toast.error('Failed to fetch data')
     }
-  };
+}
 
   const handleAddUser = async(user1) => {
     if(selectedChat.users.find((u)=>u._id === user1._id)){
@@ -189,21 +185,25 @@ function EditGroupModal({fetchMessages}) {
               onChange={(e) => setGroupChatName(e.target.value)}
             />
             <button
-              className="btn btn-primary ms-2"
+              className="btn"
+              style={{border:'none'}}
               onClick={handleRename}
             >
-              Update
+              <i class="fa-regular fs-2 p-1 fa-circle-check"></i>
             </button>
           </div>
-          <div className="d-flex my-3 align-items-center">
+         <div className='d-flex'>
             <input
+              style={{
+                boxShadow: "none"
+              }}
+              onChange={(e) => setSearchInput(e.target.value)}
               type="text"
-              className="form-control"
-              placeholder="Search User"
-              style={{ boxShadow: 'none' }}
-              onChange={(e) => handleSearch(e.target.value)}
+              className="form-control mb-2"
+              placeholder="Search Users"
             />
-          </div>
+            <button className='btn' style={{border:'none'}} onClick={handleSearch}><i className="fa-solid fs-4 fa-magnifying-glass"></i></button>
+         </div>
           {loading ? (
             <div style={{ opacity: '0.2' }}>
               <PlaceholderButton xs={12} lg={12} md={12} />
