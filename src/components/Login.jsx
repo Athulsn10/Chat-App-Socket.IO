@@ -52,7 +52,7 @@ function Login() {
         onLoaderFinished={() => setProgress(0)}
       />
     <div className=" d-flex justify-content-center" >
-        <div className=" d-flex align-items-center justify-content-center" style={{width:'340px'}}>
+        <div className=" d-flex align-items-center justify-content-center" style={{width:'400px'}}>
           <div className='container-fluid'>
           <h4 className='text-dark fw-bolder text-center'>Welcome back</h4>
             <Form.Control
@@ -77,14 +77,14 @@ function Login() {
           // disabled={loading}
           style={{backgroundColor:'#9439ef',color:'white'}} className=" btn  w-100">Log In</button>
         </div>
-        <div className="mb-2 d-flex align-items-center justify-content-center">
+        {/* <div className="mb-2 d-flex align-items-center justify-content-center">
           <button onClick={()=>{
             setEmail("guestuser@gmail.com");
             setPassword("123456")
           }} 
           style={{backgroundColor:'transparent',color:'white',border:'none'}}
           className="mx-2 text-dark w-100">Chat As A Guest</button>
-        </div>
+        </div> */}
           </div>
         </div>
     </div>
@@ -98,7 +98,7 @@ function Login() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme="light"
       />
     </>
   )
